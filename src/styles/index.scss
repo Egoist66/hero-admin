@@ -1,0 +1,38 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    padding: 0;
+}
+
+.error-msg {
+    color: red;
+    margin: 15px 0px !important;
+}
+
+.removing-char {
+    opacity: 0;
+    transition: 1s all ease;
+    animation: deleteTodo 1s ease alternate;
+}
+
+
+@keyframes deleteTodo {
+    0% {
+        transform: translateX(50px);
+        transition: 1s all ease;
+
+    }
+    100% {
+        transform: translate(0px);
+        transition: 1s all ease;
+
+    }
+}

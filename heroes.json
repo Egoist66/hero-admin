@@ -1,0 +1,25 @@
+{
+  "heroes": [
+    {
+      "id": "548b",
+      "description": "Programmer",
+      "element": "fire",
+      "name": "Farid",
+      "charStatus": "created"
+    },
+    {
+      "id": "06ff",
+      "description": "Killer",
+      "element": "earth",
+      "name": "Jack",
+      "charStatus": "created"
+    },
+    {
+      "id": "0ddf",
+      "description": "Wordpress",
+      "element": "water",
+      "name": "Admin",
+      "charStatus": "created"
+    }
+  ]
+}
