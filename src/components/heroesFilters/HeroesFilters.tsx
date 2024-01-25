@@ -6,25 +6,23 @@
 // Изменять json-файл для удобства МОЖНО!
 // Представьте, что вы попросили бэкенд-разработчика об этом
 
-import { useEffect, useState } from "react";
-import { Filters, filterHeroes } from "../../store/slices/hero-slice";
-import { useAppDispatch } from "../../store/store";
+import { FC } from "react";
+import { Filters, filterHeroes, heroesSelector } from "../../store/slices/hero-slice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 
-const HeroesFilters = () => {
+const HeroesFilters: FC = () => {
 
-    const [filter, setFilter] = useState<Filters>('all')
     const dispatch = useAppDispatch()
+    const {filter} = useAppSelector(heroesSelector)
 
     const filterChar = (filter: Filters) => {
         return () => {
-            setFilter(filter)
+            dispatch(filterHeroes({filter}))
         }
     }
+    
+ 
 
-    useEffect(() => {
-        dispatch(filterHeroes({filter}))
-    }, [filter])
-   
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">

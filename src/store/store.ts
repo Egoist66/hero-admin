@@ -3,6 +3,7 @@ import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { heroDataSliceReducer } from "./slices/hero-slice";
 
 
+
 export const store = configureStore({
     reducer: {
         heroesData: heroDataSliceReducer
@@ -18,6 +19,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     UnknownAction
 >
+
 
 
 export type AppRootState = ReturnType<typeof store.getState>

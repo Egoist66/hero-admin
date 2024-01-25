@@ -4,7 +4,10 @@ import { AppRootState } from "../store"
 
 export type Filters = 'all' | 'fire' | 'water' | 'wind' | 'earth'
 export type Statuses = 'idle' | 'pending' | 'error' | 'resolved' | 'removing' | 'removed' | 'created'
-type initialStateType = {
+
+
+
+export type initialStateType = {
     heroes: HeroesResponse[],
     heroesStatus: 'pending' | 'error' | 'resolved',
     filter: Filters
@@ -34,12 +37,6 @@ const heroDataSlice = createSlice({
 
         heroesFetchingError(state){
             state.heroesStatus = 'error'
-        },
-
-        // setManualHeroStatus
-
-        setHeroStatus(state, action: PayloadAction<'pending' | 'error' | 'resolved'>){
-            state.heroesStatus = action.payload
         },
 
 
@@ -97,7 +94,6 @@ export const {
     heroesFetched, 
     removedHero, 
     removingHero, 
-    setHeroStatus, 
     heroesFetching,
     removedHeroError,
     createdHero,
@@ -107,6 +103,6 @@ export const {
     heroesFetchingError
 } = heroDataSlice.actions
 export const heroDataSliceReducer = heroDataSlice.reducer
-const selector = (state: AppRootState) => state
 
+const selector = (state: AppRootState) => state
 export const heroesSelector = createSelector(selector, (state) => state.heroesData)

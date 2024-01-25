@@ -1,6 +1,6 @@
 import { heroesAPI } from "../../hooks/heroesAPI"
 import { heroesFetched, heroesFetching, heroesFetchingError } from "../slices/hero-slice"
-import { AppThunk } from "../store"
+import { AppThunk } from "../store";
 
 
 export const fetchHeroes = (): AppThunk => {

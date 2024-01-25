@@ -1,10 +1,10 @@
 
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { fetchHeroes } from "../../store/thunks/fetch-heroes";
-import { heroesSelector } from '../../store/slices/hero-slice';
+import { heroesSelector } from "../../store/slices/hero-slice";
 
 
 // Задача для этого компонента:
@@ -12,12 +12,12 @@ import { heroesSelector } from '../../store/slices/hero-slice';
 // Усложненная задача:
 // Удаление идет и с json файла при помощи метода DELETE
 
-const HeroesList = () => {
+const HeroesList: FC = () => {
   const { heroes, heroesStatus, filter} = useAppSelector(heroesSelector);
   const dispatch = useAppDispatch();
 
 
-  const HeroesList = () => {
+  const renderHeroes = () => {
    
     return heroes.filter((item) => {
         switch(filter){
@@ -48,16 +48,13 @@ const HeroesList = () => {
     else if (heroesStatus === "error") {
         return <h5 className="text-center mt-5">Ошибка загрузки</h5>;
     }
-
-
-    console.log('render');
     
 
     return (
             <ul>
                 {
-                    !HeroesList().length ? 
-                    <h5 className="text-center mt-5">Героев пока нет</h5>: HeroesList().map(({id, ...props}) => (
+                    !renderHeroes().length ? 
+                    <h5 className="text-center mt-5">Героев пока нет</h5>: renderHeroes().map(({id, ...props}) => (
                         <HeroesListItem id={id} key={id} {...props} />
                     ))
                 }
