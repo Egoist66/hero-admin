@@ -21,6 +21,30 @@ const HeroesFilters: FC = () => {
         }
     }
     
+    let activeClass = ''
+
+    switch(filter){
+        case "all": {
+            activeClass = "btn btn-outline-dark active"
+            break
+        }
+        case "fire": {
+            activeClass = "btn btn-danger active"
+            break
+        }
+        case "water": {
+            activeClass = "btn btn-primary active"
+            break
+        }
+        case "wind": {
+            activeClass = "btn btn-success active"
+            break
+        }
+        case "earth": {
+            activeClass = "btn btn-secondary active"
+            break
+        }
+    }
  
 
     return (
@@ -28,11 +52,11 @@ const HeroesFilters: FC = () => {
             <div className="card-body">
                 <p className="card-text">Отфильтруйте героев по элементам</p>
                 <div className="btn-group">
-                    <button onClick={filterChar('all')} className={filter === 'all' ? "btn btn-outline-dark active" : "btn btn-outline-dark"}>Все</button>
-                    <button onClick={filterChar('fire')}className={filter === 'fire' ? "btn btn-danger active" : "btn btn-danger"}>Огонь</button>
-                    <button onClick={filterChar('water')}className={filter === 'water' ? "btn btn-primary active" : "btn btn-primary"}>Вода</button>
-                    <button onClick={filterChar('wind')}className={filter === 'wind' ? "btn btn-success active" : "btn btn-success"}>Ветер</button>
-                    <button onClick={filterChar('earth')}className={filter === 'earth' ? "btn btn-secondary active" : "btn btn-secondary"}>Земля</button>
+                    <button onClick={filterChar('all')} className={filter === 'all' ? activeClass : "btn btn-outline-dark"}>Все</button>
+                    <button onClick={filterChar('fire')}className={filter === 'fire' ? activeClass : "btn btn-danger"}>Огонь</button>
+                    <button onClick={filterChar('water')}className={filter === 'water' ? activeClass : "btn btn-primary"}>Вода</button>
+                    <button onClick={filterChar('wind')}className={filter === 'wind' ? activeClass : "btn btn-success"}>Ветер</button>
+                    <button onClick={filterChar('earth')}className={filter === 'earth' ? activeClass : "btn btn-secondary"}>Земля</button>
                 </div>
             </div>
             

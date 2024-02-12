@@ -1,3 +1,11 @@
 {
-  "heroes": []
+  "heroes": [
+    {
+      "id": "16e3",
+      "description": "1",
+      "element": "wind",
+      "name": "Jac'k",
+      "charStatus": "created"
+    }
+  ]
 }

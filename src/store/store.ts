@@ -7,7 +7,8 @@ import { heroDataSliceReducer } from "./slices/hero-slice";
 export const store = configureStore({
     reducer: {
         heroesData: heroDataSliceReducer
-    }
+    },
+
 })
 
 

@@ -31,7 +31,7 @@ const heroDataSlice = createSlice({
         },
 
         heroesFetched(state, action: PayloadAction<HeroesResponse[]>){
-            state.heroes.push(...action.payload)
+            state.heroes = [...state.heroes, ...action.payload]
             state.heroesStatus = 'resolved'
         },
 
@@ -103,6 +103,8 @@ export const {
     heroesFetchingError
 } = heroDataSlice.actions
 export const heroDataSliceReducer = heroDataSlice.reducer
+
+
 
 const selector = (state: AppRootState) => state
 export const heroesSelector = createSelector(selector, (state) => state.heroesData)

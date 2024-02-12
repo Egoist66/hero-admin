@@ -3,6 +3,7 @@ import { heroesFetched, heroesFetching, heroesFetchingError } from "../slices/he
 import { AppThunk } from "../store";
 
 
+
 export const fetchHeroes = (): AppThunk => {
     return async (dispatch) => {
         dispatch(heroesFetching())
@@ -16,3 +17,4 @@ export const fetchHeroes = (): AppThunk => {
         }
     }
 }
+
