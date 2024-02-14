@@ -1,13 +1,16 @@
 import { ThunkAction, ThunkDispatch, UnknownAction, configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { heroDataSliceReducer } from "./slices/hero-slice";
-
+import { apiSlice } from "../api/api-slice";
 
 
 export const store = configureStore({
     reducer: {
-        heroesData: heroDataSliceReducer
+        heroesData: heroDataSliceReducer,
+        [apiSlice.reducerPath]: apiSlice.reducer
     },
+
+    middleware: (gdm) => gdm().concat(apiSlice.middleware)
 
 })
 

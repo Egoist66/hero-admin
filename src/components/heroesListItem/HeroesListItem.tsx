@@ -1,7 +1,7 @@
 import { FC, memo } from "react"
-import { useAppDispatch } from "../../store/store";
-import { removeHeroes } from "../../store/thunks/delete-heroes"
+//import { useAppDispatch } from "../../store/store";
 import { Statuses } from "../../store/slices/hero-slice";
+import { useDeleteHeroMutation } from "../../api/api-slice";
 
 type HeroesListItemProps = {
     name: string
@@ -11,8 +11,10 @@ type HeroesListItemProps = {
     element?: 'fire' | 'water' | 'wind' | 'earth' | ""
 }
 
-const HeroesListItem: FC<HeroesListItemProps> = memo(({name, id, charStatus, description, element}) => {
-    const dispatch = useAppDispatch()
+const HeroesListItem: FC<HeroesListItemProps> = memo(({name, id, description, element}) => {
+    //const dispatch = useAppDispatch()
+
+    const [deleteHero, {isLoading}] = useDeleteHeroMutation()
 
     let elementClassName;
 
@@ -36,7 +38,7 @@ const HeroesListItem: FC<HeroesListItemProps> = memo(({name, id, charStatus, des
 
 
     return (
-        <li className={charStatus === 'removing' ? `removing-char card flex-row mb-4 shadow-lg text-white ${elementClassName}`: `card flex-row mb-4 shadow-lg text-white ${elementClassName}`}>
+        <li className={isLoading ? `removing-char card flex-row mb-4 shadow-lg text-white ${elementClassName}`: `card flex-row mb-4 shadow-lg text-white ${elementClassName}`}>
             
             <div className="card-body">
                 
@@ -44,7 +46,7 @@ const HeroesListItem: FC<HeroesListItemProps> = memo(({name, id, charStatus, des
                 <p className="card-text">{description}</p>
             </div>
             <span className="position-absolute top-0 start-100 translate-middle badge border rounded-pill bg-light">
-                <button onClick={() => dispatch(removeHeroes(id))} type="button" className="btn-close btn-close" aria-label="Close"></button>
+                <button onClick={() => deleteHero(id)} type="button" className="btn-close btn-close" aria-label="Close"></button>
             </span>
         </li>
     )

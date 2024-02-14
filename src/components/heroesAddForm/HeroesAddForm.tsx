@@ -11,8 +11,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { FC } from "react";
-import { useAppDispatch } from "../../store/store";
-import { createHeroes } from "../../store/thunks/create-heroes";
+import { useCreateHeroMutation } from "../../api/api-slice";
+//import { useAppDispatch } from "../../store/store";
+//import { createHeroes } from "../../store/thunks/create-heroes";
 
 const options = [
   { value: "fire", text: "Огонь" },
@@ -28,7 +29,9 @@ type initialValuesType = {
 }
 
 const HeroesAddForm: FC = () => {
-    const dispatch = useAppDispatch()
+  //const dispatch = useAppDispatch()
+
+  const [createHero, {isLoading}] = useCreateHeroMutation()
 
  
   const formik = useFormik({
@@ -46,12 +49,22 @@ const HeroesAddForm: FC = () => {
       element: Yup.string().required('Поле элемент обязательно'),
     }),
     onSubmit({ description, element, name }, {resetForm}) {
-        dispatch(createHeroes({
-            description: description.trim(),
-            element,
-            name: name.trim(),
-            charStatus: 'created'
-        }))
+
+        createHero({
+          description: description.trim(),
+          element,
+          name: name.trim(),
+          charStatus: 'created',
+          id: Date.now().toString()
+        }).unwrap()
+
+
+      // dispatch(createHeroes({
+      //     description: description.trim(),
+      //     element,
+      //     name: name.trim(),
+      //     charStatus: 'created'
+      // }))
 
         resetForm()
     },
@@ -119,7 +132,7 @@ const HeroesAddForm: FC = () => {
       </div>
 
       <button type="submit" className="btn btn-primary">
-        Создать
+        {isLoading ? 'Создание...' : 'Создать'}
       </button>
     </form>
   );
